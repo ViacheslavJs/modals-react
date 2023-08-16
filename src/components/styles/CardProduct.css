@@ -123,8 +123,7 @@
   right: 0;
   padding: 8px;
   cursor: pointer;
-  background: red;
-  color: #ffffff;
+  background: #ffffff;
 }
 
 .card-preview:hover {
