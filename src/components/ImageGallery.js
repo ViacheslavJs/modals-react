@@ -32,6 +32,15 @@ function ImageGallery() {
   const [selectedImageId, setSelectedImageId] = useState(null);
   //const pageScroll = document.getElementsByTagName('body')[0]; 
   
+  //
+  const [isPopUpDisplayed, setPopUpDisplayed] = useState(false);
+  const [PopUpComponent, setPopUpComponent] = useState(null);
+  const loadPopUpComponent = async () => {
+    const loadResult = await import('./PopUp.js')
+    setPopUpComponent(() => loadResult.default)
+ }
+ //
+  
   function imageClose() {
     setModalActive(false);
     document.body.classList.remove('scroll');
@@ -48,6 +57,11 @@ function ImageGallery() {
     //setPopActive(true); // TODO or
     setSelectedThumbnail(thumbnail);
     document.body.classList.add('scroll');
+    
+    // Динамический импорт с помощью async:
+    setPopUpDisplayed(true);
+    loadPopUpComponent();
+    
     //console.log(thumbnail);
     //console.log(thumbnail.id);
   }
@@ -81,19 +95,21 @@ function ImageGallery() {
       </section>                
       
       <div>
-        <PopUp 
-          active={popActive}
-          popClose={popClose}
-          key={selectedThumbnail && selectedThumbnail.id}
-          content={
-            <div className="img-info">
-              <p>{selectedThumbnail && selectedThumbnail.text}</p>
-              <span>{selectedThumbnail && selectedThumbnail.src}</span>
-            </div>
-          }
-        >
+        {isPopUpDisplayed && PopUpComponent ? (
+          <PopUp 
+            active={popActive}
+            popClose={popClose}
+            key={selectedThumbnail && selectedThumbnail.id}
+            content={
+              <div className="img-info">
+                <p>{selectedThumbnail && selectedThumbnail.text}</p>
+                <span>{selectedThumbnail && selectedThumbnail.src}</span>
+              </div>
+            }
+          >
           <p>Modal images</p>
         </PopUp>
+        ) : null}
       </div>
                       
       

@@ -38,6 +38,15 @@ function CardProduct() {
   const [selectedImageId, setSelectedImageId] = useState(null);
   //const pageScroll = document.getElementsByTagName('body')[0]; 
   
+  //
+  const [isPopUpDisplayed, setPopUpDisplayed] = useState(false);
+  const [PopUpComponent, setPopUpComponent] = useState(null);
+  const loadPopUpComponent = async () => {
+    const loadResult = await import('./PopUp.js')
+    setPopUpComponent(() => loadResult.default)
+ }
+ //
+  
   function imageClose() {
     setModalActive(false);
     document.body.classList.remove('scroll');
@@ -53,8 +62,12 @@ function CardProduct() {
     setPopActive(thumbnail.id); // TODO or
     //setPopActive(true); // TODO or
     setSelectedThumbnail(thumbnail);
-    document.body.classList.add('scroll');
-
+    document.body.classList.add('scroll');  
+    
+    // Динамический импорт с помощью async:
+    setPopUpDisplayed(true);
+    loadPopUpComponent();
+    
     //console.log(typeof thumbnail); // object
     //console.log(thumbnail); // объект из массива thumbnails
     //console.log(thumbnail.text); // извлекаем поля - id, text и т.д.
@@ -92,20 +105,22 @@ function CardProduct() {
       </section> 
                        
       <div>
-        <PopUp 
-          active={popActive}
-          popClose={popClose}
-          key={selectedThumbnail && selectedThumbnail.id}
-          content={
-            <>
-              <span className="product-name">{selectedThumbnail && selectedThumbnail.name}</span>
-              <p><span>{selectedThumbnail && selectedThumbnail.name}</span>
-                {selectedThumbnail && selectedThumbnail.text}</p>              
-            </>
-          }          
-        >
+        {isPopUpDisplayed && PopUpComponent ? (
+          <PopUp 
+            active={popActive}
+            popClose={popClose}
+            key={selectedThumbnail && selectedThumbnail.id}
+            content={
+              <>
+                <span className="product-name">{selectedThumbnail && selectedThumbnail.name}</span>
+                <p><span>{selectedThumbnail && selectedThumbnail.name}</span>
+                  {selectedThumbnail && selectedThumbnail.text}</p>              
+              </>
+            }          
+          >
           <p>Card product</p>
         </PopUp>
+        ) : null}
       </div>
                       
       
