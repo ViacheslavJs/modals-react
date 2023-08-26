@@ -1,9 +1,14 @@
 //import React from 'react'; // если используются классовые компоненты
+//import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 import './styles/CardProduct.css';
 import PopUp from './PopUp';
 import Modal from './Modal';
-//import ReactDOM from 'react-dom/client';
+import PopCart from './PopCart';
+
+//
+import Basket from './Basket';
+import './styles/Basket.css';
 
 //
 function CardProduct() {   
@@ -38,6 +43,9 @@ function CardProduct() {
   const [selectedImageId, setSelectedImageId] = useState(null);
   //const pageScroll = document.getElementsByTagName('body')[0]; 
   
+  const [basketItems, setBasketItems] = useState({}); //TODO
+  const [cartActive, setCartActive] = useState(false); //TODO
+  
   //
   const [isPopUpDisplayed, setPopUpDisplayed] = useState(false);
   const [PopUpComponent, setPopUpComponent] = useState(null);
@@ -46,17 +54,26 @@ function CardProduct() {
     setPopUpComponent(() => loadResult.default)
  }
  //
+ 
+ //
+  const [isPopCartDisplayed, setPopCartDisplayed] = useState(false);
+  const [PopCartComponent, setPopCartComponent] = useState(null);
+  const loadPopCartComponent = async () => {
+    const loadResult = await import('./PopCart.js')
+    setPopCartComponent(() => loadResult.default)
+ }
+ //
   
   function imageClose() {
     setModalActive(false);
     document.body.classList.remove('scroll');
-  };
+  }
   
   function handleThumbnailClick(thumbnailId) {
     setModalActive(true);
     setSelectedImageId(thumbnailId);   
     document.body.classList.add('scroll');
-  };
+  }
   
   function popClick(thumbnail) {
     setPopActive(thumbnail.id); // TODO or
@@ -77,12 +94,62 @@ function CardProduct() {
   function popClose() {
     setPopActive(false);
     document.body.classList.remove('scroll');        
-  };
+  }  
+  
+  function cartClick() {
+    setCartActive(true);
+    setPopCartDisplayed(true);
+    loadPopCartComponent();
+    document.body.classList.add('scroll');  
+  }
+  
+  function cartClose() {
+    setCartActive(false);
+    document.body.classList.remove('scroll');  
+  }
+  
+  //TODO
+  function addBasket(id, event) {
+    event.preventDefault(); 
+    //console.log(id);
+    //console.log(basketItems);
+    setBasketItems((prevItems) => { // Используется функция обновления состояния корзины.
+      const updatedItems = { ...prevItems }; // Создание копии текущего состояния корзины.
+      /*
+      //console.log(prevItems);
+      //console.log(updatedItems);
+      updatedItems[id] = id in updatedItems ? updatedItems[id] + 1 : 1;
+      //console.log(updatedItems[id]);
+      //console.log(updatedItems);
+      //console.log(prevItems);
+      return updatedItems;
+      */
+      
+    // Проверка, существует ли товар с указанным id в корзине.
+    if (id in updatedItems) {
+      updatedItems[id] = updatedItems[id] + 1; // Если существует, увеличиваем количество на 1.
+    } else {
+      updatedItems[id] = 1; // Если нет, создаем запись с начальным количеством 1.
+    }
+    return updatedItems; // Возвращение обновленного объекта корзины.
+      
+    });
+  }
+  //
+  
     
   return (
-    <div>
+    <div>              
       <section className="card-product">     
         <h2>Card product</h2> 
+        
+        
+        <span className="" onClick={cartClick}>
+                Cart
+              </span>
+        
+        
+        
         <div className='card-flex-box'>
           {thumbnails.map((thumbnail) => (
             <div className="card-preview-box" key={thumbnail.id}>
@@ -98,6 +165,8 @@ function CardProduct() {
               </span>
               <p>Name: {thumbnail.name}</p>
               <p>Price: {thumbnail.price ? <strong>{thumbnail.price}</strong> : <span>&mdash;</span>}</p>
+              {/*<button onClick={() => addToCart(thumbnail.id, thumbnail.name)}>В корзину</button>*/}
+              {<a href="#" onClick={(event) => addBasket(thumbnail.id, event)}>В корзину</a>}
             </div>
           ))}
         </div> 
@@ -133,6 +202,23 @@ function CardProduct() {
           onClose={imageClose}       
         />        
       )}
+                  
+      <div>
+        {isPopCartDisplayed && PopCartComponent ? (
+          <PopCart 
+            active={cartActive}
+            popClose={cartClose}
+            content={
+              <>
+                <Basket basketItems={basketItems} thumbnails={thumbnails} setBasketItems={setBasketItems} />              
+              </>
+            }          
+          >
+          <p>Cart</p>
+        </PopCart>
+        ) : null}
+      </div>
+                                    
     </div>
   );
 };
