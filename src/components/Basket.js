@@ -3,6 +3,7 @@
 function Basket(props) {
   const basketItems = props.basketItems;
   const setBasketItems = props.setBasketItems;
+  const setTotalAddedItems = props.setTotalAddedItems;
   const thumbnails = props.thumbnails;
   let totalAmount = 0;
 
@@ -10,12 +11,33 @@ function Basket(props) {
   
   const deleteBasketItem = (id, event) => {
     event.preventDefault(); 
-    props.setBasketItems((prevItems) => {
+    setBasketItems((prevItems) => {
       const updatedItems = { ...prevItems };
       delete updatedItems[id];
+      
+      // TODO - подсчёт количества добавленных товаров при удалении:
+      let totalCount = 0;
+      for (const itemId in updatedItems) {
+        totalCount += updatedItems[itemId];
+      }
+      setTotalAddedItems(totalCount); // Обновляем общее количество добавленных товаров
+      console.log('Общее количество добавленных товаров:', totalCount);
+      //
+      
       return updatedItems;
     });
   };
+  
+  //
+  const clearBasket = () => {
+    setBasketItems({});
+    const clearedTotalItems = 0;
+    setTotalAddedItems(0); // Обнуляем общее количество добавленных товаров
+    console.log('Общее количество оставшихся товаров:', clearedTotalItems);
+    console.log(basketItems);
+    //console.log(clearedTotalItems);
+  };
+  //
 
   for (let id in basketItems) {
     const itemValue = basketItems[id];
@@ -34,6 +56,9 @@ function Basket(props) {
               <a href="#" onClick={(event) => deleteBasketItem(id, event)}>Удалить</a>
             </div>
           );
+          //console.log(thumbnail.name);
+          //console.log(basketItemElements);
+          console.log(basketItems);
 
           break;
         }
@@ -48,7 +73,7 @@ function Basket(props) {
       <div className="basket-item">
         <span>Всего <strong>{totalAmount} грн.</strong></span>
       </div>
-      <button onClick={setBasketItems}>Очистить</button>
+      <button onClick={clearBasket}>Очистить</button>
     </div>
   );
 }

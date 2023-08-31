@@ -5,6 +5,8 @@ import './styles/CardProduct.css';
 import PopUp from './PopUp';
 import Modal from './Modal';
 import PopCart from './PopCart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 //
 import Basket from './Basket';
@@ -45,6 +47,9 @@ function CardProduct() {
   
   const [basketItems, setBasketItems] = useState({}); //TODO
   const [cartActive, setCartActive] = useState(false); //TODO
+  
+  const [totalAddedItems, setTotalAddedItems] = useState(0); // Состояние для общего количества добавленных товаров
+
   
   //
   const [isPopUpDisplayed, setPopUpDisplayed] = useState(false);
@@ -124,32 +129,51 @@ function CardProduct() {
       //console.log(prevItems);
       return updatedItems;
       */
-      
+     
+    // TODO - подсчёт количества добавленных товаров: 
     // Проверка, существует ли товар с указанным id в корзине.
     if (id in updatedItems) {
       updatedItems[id] = updatedItems[id] + 1; // Если существует, увеличиваем количество на 1.
     } else {
       updatedItems[id] = 1; // Если нет, создаем запись с начальным количеством 1.
-    }
+    }       
+    /*
+    // or - с методом reduce:
+    const totalCount = Object.values(updatedItems).reduce((sum, value) => sum + value, 0);
+      setTotalAddedItems(totalCount); // Обновляем общее количество добавленных товаров
+      console.log('Общее количество добавленных товаров:', totalCount);
+    */    
+    // or - с помощью обычного цикла:
+    let totalCount = 0;
+      for (const itemId in updatedItems) {
+        totalCount += updatedItems[itemId];
+      }
+      setTotalAddedItems(totalCount); // Обновляем общее количество добавленных товаров
+      console.log('Общее количество добавленных товаров:', totalCount);
+    //
+    
+    
     return updatedItems; // Возвращение обновленного объекта корзины.
       
     });
   }
   //
   
-    
+  const clearedTotalItems = 0;
+  const totalItems = clearedTotalItems > 0 ? clearedTotalItems : totalAddedItems;  
+  
   return (
     <div>              
       <section className="card-product">     
-        <h2>Card product</h2> 
-        
-        
-        <span className="" onClick={cartClick}>
-                Cart
-              </span>
-        
-        
-        
+        <h2>Card product</h2>
+        <div className="cart">         
+          <FontAwesomeIcon icon={faCartShopping} className="cart-icon" onClick={cartClick} />
+          <>
+            <span> Qty: </span>
+            <span className="total-items">{`${totalItems}`}</span>
+          </>
+        </div>
+                        
         <div className='card-flex-box'>
           {thumbnails.map((thumbnail) => (
             <div className="card-preview-box" key={thumbnail.id}>
@@ -166,7 +190,7 @@ function CardProduct() {
               <p>Name: {thumbnail.name}</p>
               <p>Price: {thumbnail.price ? <strong>{thumbnail.price}</strong> : <span>&mdash;</span>}</p>
               {/*<button onClick={() => addToCart(thumbnail.id, thumbnail.name)}>В корзину</button>*/}
-              {<a href="#" onClick={(event) => addBasket(thumbnail.id, event)}>В корзину</a>}
+              {<a className="add-cart" href="#" onClick={(event) => addBasket(thumbnail.id, event)}>Add to cart</a>}
             </div>
           ))}
         </div> 
@@ -210,7 +234,12 @@ function CardProduct() {
             popClose={cartClose}
             content={
               <>
-                <Basket basketItems={basketItems} thumbnails={thumbnails} setBasketItems={setBasketItems} />              
+                <Basket 
+                  basketItems={basketItems} 
+                  thumbnails={thumbnails} 
+                  setBasketItems={setBasketItems} 
+                  setTotalAddedItems={setTotalAddedItems}                  
+                />              
               </>
             }          
           >
