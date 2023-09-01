@@ -1,13 +1,14 @@
 .pop-cart {
   display: flex;	
   justify-content: center;
-  align-items: center;
+  align-items: center;  
   
   position: fixed; 
   top: 0;
   left: 0;   
   right: 0;
-  bottom: 0;		    
+  bottom: 0;	
+  padding: 10px;	    
   background: rgba(256, 256, 256, 0.7);  
   z-index: 300;	      
   overflow-x: hidden;
@@ -32,13 +33,13 @@
 }
 
 .pop-cart-content { 
-  max-width: calc(100% - 10px);      
+  max-width: calc(100%); /* width: calc(100%); */    
   margin: auto;       
   z-index: 300;          
   border-radius: 5px;
   text-align: left; 
   /*border: 1px solid #9d9d9d;/*TODO*/
-  padding: 20px;
+  padding: 10px;
   /*transform: scale(0.5);*/
   box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.3);   
   border: 1px solid #9ec5d9;

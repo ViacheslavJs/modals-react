@@ -53,7 +53,7 @@ function Basket(props) {
           basketItemElements.push(
             <div className="basket-item" key={thumbnail.id}>
               <span>{thumbnail.name} - {itemValue} шт.</span>
-              <a href="#" onClick={(event) => deleteBasketItem(id, event)}>Удалить</a>
+              <button className="basket-item-delete" onClick={(event) => deleteBasketItem(id, event)}>Удалить</button>
             </div>
           );
           //console.log(thumbnail.name);
@@ -68,12 +68,11 @@ function Basket(props) {
 
   return (
     <div className="basket">
-      <h3>Корзина</h3>
       {basketItemElements}
-      <div className="basket-item">
+      <div className="basket-total">
         <span>Всего <strong>{totalAmount} грн.</strong></span>
       </div>
-      <button onClick={clearBasket}>Очистить</button>
+      <button className="basket-clear" onClick={clearBasket}>Очистить</button>
     </div>
   );
 }

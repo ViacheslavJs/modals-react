@@ -12,27 +12,25 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Basket from './Basket';
 import './styles/Basket.css';
 
+const thumbnails = [
+  { id: 1, src: 'images/thumbnails/fm-5.webp', name: 'Green World', text: ' - Description...', price: 1200},
+  { id: 2, src: 'images/thumbnails/fm-3.webp', name: 'Cosiness', text: ' - Description...', price: 5300},
+  { id: 3, src: 'images/thumbnails/fm-13.webp', name: 'Yellow', text: ' - Description...', price: 200},
+  { id: 4, src: 'images/thumbnails/fm-10.webp', name: 'Pink', text: ' - Description...', price: null},
+  { id: 5, src: 'images/thumbnails/fm-11.webp', name: 'Natural Wood', text: ' - Description...', price: 400},
+];
+  
+const images = [
+  { id: 1, src: 'images/fm-5.jpg', alt: 'Image 1'},
+  { id: 2, src: 'images/fm-3.jpg', alt: 'Image 2'},
+  { id: 3, src: 'images/fm-13.jpg', alt: 'Image 3'},
+  { id: 4, src: 'images/fm-10.jpg', alt: 'Image 4'},
+  { id: 5, src: 'images/fm-11.jpg', alt: 'Image 5'},
+];
+
 //
 function CardProduct() {   
-
-  const thumbnails = [
-    { id: 1, src: 'images/thumbnails/fm-5.webp', name: 'Green World', text: ' - Description...', price: 1200},
-    { id: 2, src: 'images/thumbnails/fm-3.webp', name: 'Cosiness', text: ' - Description...', price: 5300},
-    { id: 3, src: 'images/thumbnails/fm-13.webp', name: 'Yellow', text: ' - Description...', price: 200},
-    { id: 4, src: 'images/thumbnails/fm-10.webp', name: 'Pink', text: ' - Description...', price: null},
-    { id: 5, src: 'images/thumbnails/fm-11.webp', name: 'Natural Wood', text: ' - Description...', price: 400},
-    // Добавьте другие миниатюры по аналогии
-  ];
-  
-  const images = [
-    { id: 1, src: 'images/fm-5.jpg', alt: 'Image 1'},
-    { id: 2, src: 'images/fm-3.jpg', alt: 'Image 2'},
-    { id: 3, src: 'images/fm-13.jpg', alt: 'Image 3'},
-    { id: 4, src: 'images/fm-10.jpg', alt: 'Image 4'},
-    { id: 5, src: 'images/fm-11.jpg', alt: 'Image 5'},
-    // Добавьте другие большие изображения по аналогии
-  ];
-   
+     
   const [modalActive, setModalActive] = useState(false); // открыть/закрыть мод. окно изображений
   
   const [popActive, setPopActive] = useState(false); // открыть/закрыть поп-ап описаний
@@ -115,7 +113,7 @@ function CardProduct() {
   
   //TODO
   function addBasket(id, event) {
-    event.preventDefault(); 
+    event.preventDefault(); // 'event' используем в случае ссылки вместо кнопки
     //console.log(id);
     //console.log(basketItems);
     setBasketItems((prevItems) => { // Используется функция обновления состояния корзины.
@@ -189,8 +187,8 @@ function CardProduct() {
               </span>
               <p>Name: {thumbnail.name}</p>
               <p>Price: {thumbnail.price ? <strong>{thumbnail.price}</strong> : <span>&mdash;</span>}</p>
-              {/*<button onClick={() => addToCart(thumbnail.id, thumbnail.name)}>В корзину</button>*/}
-              {<a className="add-cart" href="#" onClick={(event) => addBasket(thumbnail.id, event)}>Add to cart</a>}
+              {<button className="add-cart" onClick={(event) => addBasket(thumbnail.id, event)}>Add to cart</button>}
+              {/*'event' используем в случае ссылки вместо кнопки, добавить атрибут href="#"*/}
             </div>
           ))}
         </div> 
@@ -243,7 +241,7 @@ function CardProduct() {
               </>
             }          
           >
-          <p>Cart</p>
+          <p>Корзина</p>
         </PopCart>
         ) : null}
       </div>
