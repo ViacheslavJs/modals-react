@@ -2,6 +2,7 @@
 import './App.css';
 import CardProduct from './components/CardProduct';
 import ImageGallery from './components/ImageGallery';
+import Yachts from './components/Yachts';
 
 const app = {    
   padding: '0px',
@@ -14,6 +15,7 @@ function App() {
       <div>
         <CardProduct />
         <ImageGallery />
+        <Yachts />
       </div>
     </div>
   );
