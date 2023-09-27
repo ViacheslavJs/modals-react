@@ -7,14 +7,14 @@ import YachtsItem from './YachtsItem';
 function Yachts() {
 
   // тестовое состояние для демонстрации работы useMemo
-  const [subtitleColor, setSubtitleColor] = useState('red');
+  const [subtitleColor, setSubtitleColor] = useState('white');
   
   // Обработчик события для переключения цвета
   const toggleSubtitleColor = () => {
-    if (subtitleColor === 'red') {
-      setSubtitleColor('green');
-    } else {
+    if (subtitleColor === 'white') {
       setSubtitleColor('red');
+    } else {
+      setSubtitleColor('white');
     }
   };
   
