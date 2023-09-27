@@ -2,7 +2,7 @@
 import './App.css';
 import CardProduct from './components/CardProduct';
 import ImageGallery from './components/ImageGallery';
-import Yachts from './components/Yachts';
+import Yachts from './components/Yachts/Yachts';
 
 const app = {    
   padding: '0px',

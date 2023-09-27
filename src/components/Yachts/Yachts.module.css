@@ -5,6 +5,17 @@
 }
 */
 
+.yachtContainer {
+  display: flex;
+  flex-wrap: wrap; /* перенос по необходимости  */
+  justify-content: flex-start;
+  gap: 15px; /* пространство между элементами по горизонтали */
+}
+
+.test {
+  margin: 10px 0;
+}
+
 .body {
   text-align: left;
   background-color: #111111;
@@ -17,6 +28,7 @@ h1 {
 }
 
 .item {
+  width: 315px;
   border: 1px solid gray;
 }
 

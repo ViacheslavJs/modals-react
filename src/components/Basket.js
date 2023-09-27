@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 
 // TODO - basket:
 function Basket(props) {
@@ -28,16 +29,36 @@ function Basket(props) {
     });
   };
   
-  //
+  /*
+  //TODO не правильно - пустой объект вернётся только при повторном клике 'очистить'
   const clearBasket = () => {
-    setBasketItems({});
-    const clearedTotalItems = 0;
+    setBasketItems({}); // React запланирует обновление состояния, но это обновление происходит асинхронно
+    const remainder = 0;
     setTotalAddedItems(0); // Обнуляем общее количество добавленных товаров
-    console.log('Общее количество оставшихся товаров:', clearedTotalItems);
-    console.log(basketItems);
+    console.log('Общее количество оставшихся товаров:', remainder);
+    console.log(basketItems); // после вызова setBasketItems({}), значение basketItems здесь ещё не будет обновлено.
     //console.log(clearedTotalItems);
   };
   //
+  */
+  
+  
+  //TODO правильно - useEffect предназначен для обработки эффектов и выполнения кода после(!) обновления состояния
+  // использование useEffect для действий вроде очистки корзины - рекомендуемая практика.
+  const clearBasket = () => {
+    setBasketItems({}); 
+  };
+
+  useEffect(() => {
+    if (Object.keys(basketItems).length === 0) {
+      setTotalAddedItems(0); // Обнуляем общее количество добавленных товаров, если корзина пуста
+      let remainder = basketItems;
+      console.log(`Общее количество оставшихся товаров: ${Object.keys(basketItems).length}`);
+      console.log(remainder);
+    }
+  }, [basketItems]);
+  //
+  
 
   for (let id in basketItems) {
     const itemValue = basketItems[id];
