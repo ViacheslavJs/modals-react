@@ -55,7 +55,9 @@ Please note that this project already has the `gh-pages` package installed and t
 for deployment are already in the `package.json` file. 
 Remember to change the URL in the `package.json` file to match your GitHub Pages page:
 
- `"homepage": "https://*yourwebsite*.github.io/modals-react/"`
+ *package.json*:
+ 
+ `"homepage": "https://yourwebsite.github.io/modals-react/"`
 
  
  
