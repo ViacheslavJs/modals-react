@@ -47,9 +47,7 @@ The project will open in a browser tab at [http://localhost:3000](http://localho
 
 To deploy this application on **GitHub Pages**, follow the instructions at the link:
 
-This section has moved here: 
-[https://facebook.github.io/create-react-app/docs/deployment]
-(https://facebook.github.io/create-react-app/docs/deployment)
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
  
 Please note that this project already has the `gh-pages` package installed and the commands required 
 for deployment are already in the `package.json` file. 
