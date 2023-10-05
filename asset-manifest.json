@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/modals-react/static/css/main.f5058d1b.css",
-    "main.js": "/modals-react/static/js/main.ea8d6fc2.js",
+    "main.css": "/modals-react/static/css/main.34ae6c71.css",
+    "main.js": "/modals-react/static/js/main.d391d352.js",
     "static/js/787.20ca06ea.chunk.js": "/modals-react/static/js/787.20ca06ea.chunk.js",
     "index.html": "/modals-react/index.html",
-    "main.f5058d1b.css.map": "/modals-react/static/css/main.f5058d1b.css.map",
-    "main.ea8d6fc2.js.map": "/modals-react/static/js/main.ea8d6fc2.js.map",
+    "main.34ae6c71.css.map": "/modals-react/static/css/main.34ae6c71.css.map",
+    "main.d391d352.js.map": "/modals-react/static/js/main.d391d352.js.map",
     "787.20ca06ea.chunk.js.map": "/modals-react/static/js/787.20ca06ea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5058d1b.css",
-    "static/js/main.ea8d6fc2.js"
+    "static/css/main.34ae6c71.css",
+    "static/js/main.d391d352.js"
   ]
 }
