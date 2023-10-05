@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import styles from './Yachts.module.css';
 import { yachts } from '../data/yachts.data.js';
 import YachtsItem from './YachtsItem';
+import YachtsForm from './YachtsForm/YachtsForm';
 
 function Yachts() {
 
@@ -21,7 +22,7 @@ function Yachts() {
   /*
   //TODO не желательно: в этом случае, фильтрация будет выполняться заново (пересчитываться), 
   // при каждом обновлении компонента (например, при изменении состояния), даже если значение фильтра не изменилось:
-  const [filtered, setFiltered] = useState(50000);
+  const [filtered, setFiltered] = useState(Infinity);
   const filteredYachts = yachts.filter(yacht => yacht.price <= filtered);
   console.log('Calculating filteredYachts...');
   //
@@ -32,7 +33,7 @@ function Yachts() {
   const [filtered, setFiltered] = useState(Infinity); // цена (число)
   const filteredYachts = useMemo(() => {
     console.log("Calculating filteredYachts...");
-    return yachts.filter(yacht => yacht.price < filtered);
+    return yachts.filter(yacht => yacht.price <= filtered);
   }, [filtered]);
   //
   
@@ -40,6 +41,9 @@ function Yachts() {
   return (
     <div className={ styles.body }>      
        <h1 style={{ color: subtitleColor }}>Yacht catalog</h1>
+       
+       <YachtsForm setFiltered={setFiltered} />
+        
        <button className={styles.test} onClick={toggleSubtitleColor}>useMemo Test</button>
        <div className={styles.yachtContainer}>
          {filteredYachts.length ? (

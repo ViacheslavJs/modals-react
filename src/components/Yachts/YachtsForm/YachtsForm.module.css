@@ -1,0 +1,66 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 315px;
+  margin: 10px 0;
+}
+
+.formInput {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border: none;
+  outline: none; 
+  border-radius: 3px; 
+  transition: all 0.4s ease;
+  color: #46494d;
+  font-size: 1em;
+  min-width: 18px; /* TODO - добавил что-бы инпут не сжимался */
+  -moz-appearance: textfield; /* TODO - убирает стрелочки "вверх-вниз" в инпуте */
+}
+
+.formInput:focus {
+  box-shadow: 0 0 10px #ffffff ;
+}
+
+.formInput::placeholder {
+  color: gray;
+}
+
+.filterLabel {
+  margin: 10px 0;
+  color: #ffffff;
+}
+
+.btn {
+  display: block;
+  max-width: 50%;
+  margin-top: 10px;
+  padding: 6px 26px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  color: #1da1f2;
+  background-color: #ffffff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);	
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 0.9em;
+   
+}
+
+.btn:hover {
+  background-color: #e9e9ed;
+  transition: all 0.4s ease;
+}
+
+.btn:active {
+  box-shadow: 0 0 10px #ffffff;
+  transition: all 0.2s ease;
+}
+

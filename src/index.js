@@ -14,7 +14,7 @@ root.render(
 );
 
 // StrictMode вызывает консоль-логи два раза - для дебагинга 
-// если без StrictMode - завернуть в пустой <></>
+// если без StrictMode - завернуть <App /> в пустой <></>
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
