@@ -16,6 +16,11 @@ function YachtsForm({ setFiltered }) {
     setFiltered(tempFilter);
   };
   
+  const resetFilter = (event) => {
+    event.preventDefault();
+    setFiltered(Infinity);
+  };
+  
   return (  
     <form className={styles.form}>
       <label htmlFor="inputFilter" className={styles.filterLabel}>Price filter:</label>
@@ -28,7 +33,10 @@ function YachtsForm({ setFiltered }) {
         value={tempFilter}
         onChange={handleFilterChange}
       />
-      <button className={styles.btn} onClick={ (event) => applyFilter(event) }>Filter</button>
+      <div className={styles.btnAlignment}>      
+        <button className={styles.btnReset} onClick={ (event) => resetFilter(event) }>Reset</button>
+        <button className={styles.btnApply} onClick={ (event) => applyFilter(event) }>Filter</button>
+      </div>
     </form>  
   );
    

@@ -1,21 +1,22 @@
 .form {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;   
   align-items: flex-start;
   width: 315px;
   margin: 10px 0;
 }
 
 .formInput {
+  width: 100%;
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 5px 0;
   border: none;
   outline: none; 
   border-radius: 3px; 
-  transition: all 0.4s ease;
+  transition: all 0.4s ease; 
   color: #46494d;
   font-size: 1em;
-  min-width: 18px; /* TODO - добавил что-бы инпут не сжимался */
+  /*min-width: 18px; /* TODO - что-бы инпут не сжимался */
   -moz-appearance: textfield; /* TODO - убирает стрелочки "вверх-вниз" в инпуте */
 }
 
@@ -32,10 +33,11 @@
   color: #ffffff;
 }
 
-.btn {
+.btnApply,
+.btnReset {
   display: block;
   max-width: 50%;
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 6px 26px;
   border: none;
   outline: none;
@@ -43,7 +45,7 @@
   color: #1da1f2;
   background-color: #ffffff;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);	
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);	 
   
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -63,4 +65,21 @@
   box-shadow: 0 0 10px #ffffff;
   transition: all 0.2s ease;
 }
+
+.btnReset {
+  color: red;
+}
+
+.btnAlignment {
+  display: flex; 
+  /*flex-direction: row;   
+  justify-content: space-between; 
+  align-items: center;*/
+  flex-direction: column;   
+  justify-content: space-between; 
+  align-items: flex-start;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
 
