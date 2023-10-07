@@ -56,12 +56,14 @@
    
 }
 
-.btn:hover {
+.btnApply:hover,
+.btnReset:hover {
   background-color: #e9e9ed;
   transition: all 0.4s ease;
 }
 
-.btn:active {
+.btnApply:active,
+.btnReset:active {
   box-shadow: 0 0 10px #ffffff;
   transition: all 0.2s ease;
 }

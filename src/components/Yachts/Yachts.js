@@ -42,7 +42,7 @@ function Yachts() {
     <div className={ styles.body }>      
        <h1 style={{ color: subtitleColor }}>Yacht catalog</h1>
        
-       <YachtsForm setFiltered={setFiltered} />
+       <YachtsForm filtered={filtered} setFiltered={setFiltered} />
         
        <button className={styles.test} onClick={toggleSubtitleColor}>useMemo Test</button>
        <div className={styles.yachtContainer}>
@@ -54,8 +54,7 @@ function Yachts() {
            
          ) : (
            <p>There are no yachts</p>
-         )}  
-              
+         )}               
        </div>     
     </div>
   );

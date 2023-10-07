@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import styles from './YachtsForm.module.css';
+//import FilterDisplay from './FilterDisplay';
 
-function YachtsForm({ setFiltered }) {
+function YachtsForm({ filtered, setFiltered }) {
   const [tempFilter, setTempFilter] = useState(Infinity); // временное значение фильтра
   
   // Обработчик изменения значения ввода
@@ -14,12 +16,24 @@ function YachtsForm({ setFiltered }) {
   const applyFilter = (event) => {
     event.preventDefault();
     setFiltered(tempFilter);
+    //setTempFilter('');
   };
   
   const resetFilter = (event) => {
     event.preventDefault();
-    setFiltered(Infinity);
+    setFiltered(Infinity);   
+    setTempFilter('');
+    console.log('without useEffect: ', filtered); // значение изменено - но, лог выполнится до! изменения состояния 
   };
+  
+  // работа useEffect - лог выполнится после! изменения состояния
+  useEffect(() => {
+    if(filtered === Infinity) {     
+      console.log('using useEffect: ', filtered);
+    }
+  }, [filtered]);
+  
+  const prefix = 'up to ';
   
   return (  
     <form className={styles.form}>
@@ -36,6 +50,21 @@ function YachtsForm({ setFiltered }) {
       <div className={styles.btnAlignment}>      
         <button className={styles.btnReset} onClick={ (event) => resetFilter(event) }>Reset</button>
         <button className={styles.btnApply} onClick={ (event) => applyFilter(event) }>Filter</button>
+        
+      </div>
+      <div style={{color: '#ffffff'}}>      
+        {filtered !== Infinity ? (
+          <p>        
+            {prefix}
+            {new Intl.NumberFormat('ru-RU', {
+              style: 'currency',
+              currency: 'USD',
+              currencyDisplay: 'narrowSymbol',
+            }).format(filtered)}          
+          </p>
+        ) : (
+          <p>All prices</p>
+        )}
       </div>
     </form>  
   );
