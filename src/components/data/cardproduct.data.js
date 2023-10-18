@@ -12,4 +12,5 @@ export const images = [
   { id: 3, src: 'images/fm-13.jpg', alt: 'Image 3'},
   { id: 4, src: 'images/fm-10.jpg', alt: 'Image 4'},
   { id: 5, src: 'images/fm-11.jpg', alt: 'Image 5'},
+  { id: 5, src: 'images/fm-2.jpg', alt: 'Image 6'},
 ];

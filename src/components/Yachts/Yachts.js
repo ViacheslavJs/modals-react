@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import { useMemo } from 'react';
 import styles from './Yachts.module.css';
 import { yachts } from '../data/yachts.data.js';
@@ -9,6 +10,10 @@ function Yachts() {
 
   // тестовое состояние для демонстрации работы useMemo
   const [subtitleColor, setSubtitleColor] = useState('white');
+  
+  useEffect(() => {
+    console.log("'yachts.data.js' loaded or updated");
+  }, []);
   
   // Обработчик события для переключения цвета
   const toggleSubtitleColor = () => {
