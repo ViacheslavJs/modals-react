@@ -4,16 +4,16 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 //import { useMemo } from 'react';
 //import styles from './Fullstack.module.css';
-import './styles/Fullstack.css';
-import PopUp from './PopUp';
-import Modal from './Modal';
-import PopCart from './PopCart';
-import { images } from './data/cardproduct.data.js';
+import './Fullstack.css';
+import PopUp from '../PopUp';
+import Modal from '../Modal';
+import PopCart from '../PopCart';
+import { images } from '../data/cardproduct.data.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import FullstackBasket from './FullstackBasket';
-import './styles/FullstackBasket.css';
+import './FullstackBasket.css';
 
 //
 function Fullstack() {   
@@ -40,7 +40,7 @@ function Fullstack() {
   const [isPopUpDisplayed, setPopUpDisplayed] = useState(false);
   const [PopUpComponent, setPopUpComponent] = useState(null);
   const loadPopUpComponent = async () => {
-    const loadResult = await import('./PopUp.js')
+    const loadResult = await import('../PopUp.js')
     setPopUpComponent(() => loadResult.default)
  }
  //
@@ -49,7 +49,7 @@ function Fullstack() {
   const [isPopCartDisplayed, setPopCartDisplayed] = useState(false);
   const [PopCartComponent, setPopCartComponent] = useState(null);
   const loadPopCartComponent = async () => {
-    const loadResult = await import('./PopCart.js')
+    const loadResult = await import('../PopCart.js')
     setPopCartComponent(() => loadResult.default)
  }
  //
@@ -267,7 +267,7 @@ function Fullstack() {
               </>
             }          
           >
-          <p>Корзина</p>
+          <p>Cart</p>
         </PopCart>
         ) : null}
       </div>

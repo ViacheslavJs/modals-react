@@ -73,8 +73,8 @@ function FullstackBasket(props) {
 
           basketItemElements.push(
             <div className="basket-item" key={furniture.id}>
-              <span>{furniture.name} - {itemValue} шт.</span>
-              <button className="basket-item-delete" onClick={(event) => deleteBasketItem(id, event)}>Удалить</button>
+              <span>{furniture.name} - {itemValue} pc.</span>
+              <button className="basket-item-delete" onClick={(event) => deleteBasketItem(id, event)}>Delete</button>
             </div>
           );
           //console.log(thumbnail.name);
@@ -91,9 +91,10 @@ function FullstackBasket(props) {
     <div className="basket">
       {basketItemElements}
       <div className="basket-total">
-        <span>Всего <strong>{totalAmount} грн.</strong></span>
+        <span>Total</span>
+        <span><strong>{totalAmount} UAH.</strong></span>
       </div>
-      <button className="basket-clear" onClick={clearBasket}>Очистить</button>
+      <button className="basket-clear" onClick={clearBasket}>Clear</button>
     </div>
   );
 }

@@ -92,6 +92,7 @@ function Basket(props) {
       {basketItemElements}
       <div className="basket-total">
         <span>Всего <strong>{totalAmount} грн.</strong></span>
+        <span><strong>{totalAmount} грн.</strong></span>
       </div>
       <button className="basket-clear" onClick={clearBasket}>Очистить</button>
     </div>

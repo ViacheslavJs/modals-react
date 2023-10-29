@@ -5,7 +5,7 @@ import ImageGallery from './components/ImageGallery';
 import Yachts from './components/Yachts/Yachts';
 import TestServer from './components/TestServer';
 import TestData from './components/TestData';
-import Fullstack from './components/Fullstack';
+import Fullstack from './components/Fullstack/Fullstack';
 
 const app = {    
   padding: '0px',
