@@ -174,6 +174,7 @@ function Fullstack() {
     fetchFurnitures();
   }, [loading]);
   
+  const prefix = ' - ';
   
   return (
     <div>              
@@ -199,7 +200,7 @@ function Fullstack() {
               <img className='card-preview'
                 key={furniture.id}
                 src={furniture.imagePath}
-                alt={`${furniture.species}`}
+                alt={furniture.alt}
                 text={furniture.text}
                 onClick={() => { handleThumbnailClick(furniture.id); }}             
               />
@@ -230,7 +231,7 @@ function Fullstack() {
               <>
                 <span className="product-name">{selectedThumbnail && selectedThumbnail.name}</span>
                 <p><span>{selectedThumbnail && selectedThumbnail.name}</span>
-                  {selectedThumbnail && selectedThumbnail.text}</p>              
+                  {prefix}{selectedThumbnail && selectedThumbnail.text}</p>              
               </>
             }          
           >

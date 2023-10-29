@@ -16,10 +16,10 @@ function App() {
   return (
     <div className="App" style={app}>          
       <div>
-        <Fullstack />
-        {/*<TestServer />
-        <TestData />*/}
-        {/*<CardProduct />*/}
+        {<Fullstack />}
+        {/*<TestServer />*/}
+        {/*<TestData />*/}
+        {<CardProduct />}
         <ImageGallery />
         <Yachts />
       </div>
