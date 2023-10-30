@@ -11,9 +11,9 @@ function PopCart({active, popClose, content, children}) {
       <div className={active ? "pop-cart active" : "pop-cart"} onClick={popClose}>
         <div className={active ? "pop-cart-content active" : "pop-cart-content"} onClick={(e) => e.stopPropagation()}>
           <div className="pop-title">{children}</div>
-          <span>
+          <div className="cart-content">
             {content}    
-          </span>       
+          </div>       
           <p>{/*active*/}</p>    
           <FontAwesomeIcon icon={faTimesCircle} className='icon-close' onClick={popClose} />
         </div>                        

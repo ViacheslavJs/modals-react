@@ -1,4 +1,8 @@
 import { useEffect } from 'react';
+import styles from './FullstackBasket.module.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 // TODO - basket:
 function FullstackBasket(props) {
@@ -72,9 +76,13 @@ function FullstackBasket(props) {
           totalAmount += itemTotal;
 
           basketItemElements.push(
-            <div className="basket-item" key={furniture.id}>
+            <div className={styles.basketItem} key={furniture.id}>
               <span>{furniture.name} - {itemValue} pc.</span>
-              <button className="basket-item-delete" onClick={(event) => deleteBasketItem(id, event)}>Delete</button>
+              <FontAwesomeIcon 
+                className={styles.basketItemDelete} 
+                icon={faTrash}               
+                onClick={(event) => deleteBasketItem(id, event)} 
+              />
             </div>
           );
           //console.log(thumbnail.name);
@@ -88,13 +96,15 @@ function FullstackBasket(props) {
   }
 
   return (
-    <div className="basket">
-      {basketItemElements}
-      <div className="basket-total">
+    <div className={styles.basket}>
+      <div className={styles.basketItemBox}>
+        {basketItemElements}
+      </div>
+      <div className={styles.basketTotal}>
         <span>Total</span>
         <span><strong>{totalAmount} UAH.</strong></span>
       </div>
-      <button className="basket-clear" onClick={clearBasket}>Clear</button>
+      <button className={styles.basketClear} onClick={clearBasket}>Clear</button>
     </div>
   );
 }

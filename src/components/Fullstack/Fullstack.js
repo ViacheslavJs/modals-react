@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 //import { useMemo } from 'react';
-//import styles from './Fullstack.module.css';
-import './Fullstack.css';
+import styles from './Fullstack.module.css';
 import PopUp from '../PopUp';
 import Modal from '../Modal';
 import PopCart from '../PopCart';
@@ -13,7 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import FullstackBasket from './FullstackBasket';
-import './FullstackBasket.css';
 
 //
 function Fullstack() {   
@@ -178,17 +176,17 @@ function Fullstack() {
   
   return (
     <div>              
-      <section className="card-product">     
+      <section className={styles.cardProduct}>     
         <h2>Furniture store</h2>
-        <div className="f-cart">         
-          <FontAwesomeIcon icon={faCartShopping} className="f-cart-icon" onClick={cartClick} />
+        <div className={styles.cart}>         
+          <FontAwesomeIcon icon={faCartShopping} className={styles.cartIcon} onClick={cartClick} />
           <>
             <span> Qty: </span>
-            <span className="total-items">{`${totalItems}`}</span>
+            <span className={styles.totalItems}>{`${totalItems}`}</span>
           </>
         </div>
                         
-        <div className='card-flex-box'>
+        <div className={styles.cardFlexBox}>
         
         {loading ? (
           "Loading..."
@@ -196,20 +194,20 @@ function Fullstack() {
         
         {furnitures.length > 0 ? (
           furnitures.map((furniture) => (
-            <div className="card-preview-box" key={furniture.id}>
-              <img className='card-preview'
+            <div className={styles.cardPreviewBox} key={furniture.id}>
+              <img className={styles.cardPreview}
                 key={furniture.id}
                 src={furniture.imagePath}
                 alt={furniture.alt}
                 text={furniture.text}
                 onClick={() => { handleThumbnailClick(furniture.id); }}             
               />
-              <span className="card-preview-span" onClick={() => { popClick(furniture); }}>
+              <span className={styles.cardPreviewSpan} onClick={() => { popClick(furniture); }}>
                 More
               </span>
               <p>Name: {furniture.name}</p>
               <p>Price: {furniture.price ? <strong>{furniture.price}</strong> : <span>&mdash;</span>}</p>
-              {<button className="add-cart" onClick={(event) => addBasket(furniture.id, event)}>Add to cart</button>}
+              {<button className={styles.addCart} onClick={(event) => addBasket(furniture.id, event)}>Add to cart</button>}
               {/*'event' используем в случае ссылки вместо кнопки, добавить атрибут href="#"*/}
             </div>
           ))) : (
@@ -218,7 +216,7 @@ function Fullstack() {
           
           </>)}
         </div>
-        <button className="viewed" onClick={() => setModalActive(true)}>just viewed</button>
+        <button className={styles.viewed} onClick={() => setModalActive(true)}>just viewed</button>
       </section> 
                        
       <div>
@@ -229,7 +227,7 @@ function Fullstack() {
             key={selectedThumbnail && selectedThumbnail.id}
             content={
               <>
-                <span className="product-name">{selectedThumbnail && selectedThumbnail.name}</span>
+                <span className={styles.productName}>{selectedThumbnail && selectedThumbnail.name}</span>
                 <p><span>{selectedThumbnail && selectedThumbnail.name}</span>
                   {prefix}{selectedThumbnail && selectedThumbnail.text}</p>              
               </>
