@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
 import styles from './FullstackBasket.module.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-
 // TODO - basket:
 function FullstackBasket(props) {
   const basketItems = props.basketItems;
@@ -78,11 +75,11 @@ function FullstackBasket(props) {
           basketItemElements.push(
             <div className={styles.basketItem} key={furniture.id}>
               <span>{furniture.name} - {itemValue} pc.</span>
-              <FontAwesomeIcon 
+              <button 
                 className={styles.basketItemDelete} 
-                icon={faTrash}               
-                onClick={(event) => deleteBasketItem(id, event)} 
-              />
+                onClick={(event) => deleteBasketItem(id, event)}>Delete
+              </button>
+           
             </div>
           );
           //console.log(thumbnail.name);

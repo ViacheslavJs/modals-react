@@ -145,13 +145,25 @@ function Fullstack() {
   const clearedTotalItems = 0;
   const totalItems = clearedTotalItems > 0 ? clearedTotalItems : totalAddedItems;  
   
+  //
+  const initialColor = totalItems > 0 ? '#ffb328' : 'silver';
+  /*
+  let initialColor; 
+  if (totalItems > 0) {
+    initialColor = '#ffb328';
+  } else {
+    initialColor = 'silver';
+  }
+  */
+  //
   
   const [furnitures, setFurnitures] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchFurnitures = async () => {
       try {
-        const response = await fetch('/api');
+        //const response = await fetch('/api'); //TODO - данные из data.json
+        const response = await fetch('/api/furniture'); //TODO - данные из БД
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -179,7 +191,7 @@ function Fullstack() {
       <section className={styles.cardProduct}>     
         <h2>Furniture store</h2>
         <div className={styles.cart}>         
-          <FontAwesomeIcon icon={faCartShopping} className={styles.cartIcon} onClick={cartClick} />
+          <FontAwesomeIcon icon={faCartShopping} style={ {color: initialColor} } className={styles.cartIcon} onClick={cartClick} />
           <>
             <span> Qty: </span>
             <span className={styles.totalItems}>{`${totalItems}`}</span>

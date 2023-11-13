@@ -152,10 +152,9 @@ function CardProduct() {
         <h2>Card product</h2>
         <div className="cart">         
           <FontAwesomeIcon icon={faCartShopping} className="cart-icon" onClick={cartClick} />
-          <>
-            <span> Qty: </span>
+          <div className="total-items-circle">
             <span className="total-items">{`${totalItems}`}</span>
-          </>
+          </div>
         </div>
                         
         <div className='card-flex-box'>

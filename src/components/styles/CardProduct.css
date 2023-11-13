@@ -88,19 +88,36 @@
 }	
 
 .cart {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  position: fixed; 
+  top: 20px;
+  right: 20px;
+  font-size: 16px;      
 }
 
 .cart-icon {
-  font-size: 24px;               
+  font-size: 1.5em;               
   color: #9ec5d9;
   cursor: pointer;
 }
 
+.total-items-circle {
+  display: flex;
+  flex-direction: row;		 
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  top: -50%;
+  right: -50%; 
+  width: 0.7em; 
+  height: 0.7em; 
+  padding : 5px; 
+  border-radius: 50%; 
+  background: #ffb328; /* #f07c13 */
+}
+
 .total-items {
-  color: red;
+  font-size: 0.9em;    
+  color: #ffffff;
 }
 
 .card-product {

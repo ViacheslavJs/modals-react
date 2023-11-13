@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 // TODO - basket:
 function Basket(props) {
@@ -74,7 +76,11 @@ function Basket(props) {
           basketItemElements.push(
             <div className="basket-item" key={thumbnail.id}>
               <span>{thumbnail.name} - {itemValue} шт.</span>
-              <button className="basket-item-delete" onClick={(event) => deleteBasketItem(id, event)}>Удалить</button>
+              <FontAwesomeIcon 
+                className="basket-item-delete" 
+                icon={faTrash} 
+                onClick={(event) => deleteBasketItem(id, event)}              
+              />
             </div>
           );
           //console.log(thumbnail.name);

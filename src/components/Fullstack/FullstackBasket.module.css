@@ -21,7 +21,7 @@
 
 .basketItemBox {
   width: 100%;
-  min-height: 2.8em;
+  min-height: 3.5em;
 }
 
 .basketTotal {
@@ -30,13 +30,14 @@
 
 .basketItemDelete { 
   outline: none;
-  border: none;
+  border: 1px solid #9d9d9d;
+  border-radius: 5px;
   background: transparent;  
   margin-left: 10px; 
-  padding: 0;
+  padding: 2px 5px;
   font-size: 1em;
   cursor: pointer;
-  color: #55b6f2;
+  color: red;
 }
 
 .basketClear {
