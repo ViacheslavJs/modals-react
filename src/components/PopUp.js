@@ -11,9 +11,9 @@ function PopUp({active, popClose, content, children}) {
       <div className={active ? "pop-modal active" : "pop-modal"} onClick={popClose}>
         <div className={active ? "pop-content active" : "pop-content"} onClick={(e) => e.stopPropagation()}>
           <div className="pop-title">{children}</div>
-          <span>
+          <div>
             {content}    
-          </span>       
+          </div>       
           <p>{/*active*/}</p>    
           <FontAwesomeIcon icon={faTimesCircle} className='icon-close' onClick={popClose} />
         </div>                        
