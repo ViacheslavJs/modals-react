@@ -4,9 +4,9 @@
 
 The original idea was:
 
- 1. Reusing the same component for modal windows.
- 2. My implementation of the shopping cart (frontend).
- 3. Everything is based on functional components.
+ - Reusing the same component for modal windows.
+ - My implementation of the shopping cart (frontend).
+ - Everything is based on functional components.
 
 Used the following approaches:
 
@@ -25,23 +25,23 @@ Work on the project continues.
 
 ## Beginning of work: 
 
- - Clone the repository by running the command:
+Clone the repository by running the command:
  
  $ `git clone https://github.com/ViacheslavJs/modals-react.git`
 
- - go to the `modals-react` directory:
+go to the `modals-react` directory:
 
  $ `cd modals-react`
 
- - installing packages:
+installing packages:
  
  ~/modals-react$ `npm install`
 
- - launch of the project:
+launch of the project:
 
  ~/modals-react$ `npm start`
  
-The project will open in a browser tab at [http://localhost:3000](http://localhost:3000)
+The project will open in a browser tab at [http://localhost:3000/modals-react/](http://localhost:3000/modals-react/)
  
 ### Deployment
 
