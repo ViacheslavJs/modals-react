@@ -6,6 +6,7 @@ function FullstackBasket(props) {
   const basketItems = props.basketItems;
   const setBasketItems = props.setBasketItems;
   const setTotalAddedItems = props.setTotalAddedItems;
+  const currency = props.currency;
   const furnitures = props.furnitures;
   let totalAmount = 0;
 
@@ -91,6 +92,29 @@ function FullstackBasket(props) {
       }
     }
   }
+  
+  /*
+  //
+  const formatPrice = 
+    new Intl.NumberFormat('ru-RU', {
+      style: 'currency',
+      currency: 'UAH',
+      currencyDisplay: 'narrowSymbol',
+    }).format(totalAmount);
+  //
+  */
+
+  /* style:  'decimal' | 'percent' | 'currency' | 'unit' */
+  /* currency: 'USD' | 'EUR' | UAH */ 
+
+  //
+  //const currency = 'UAH';
+  const formatPrice = new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency,
+    currencyDisplay: 'narrowSymbol',
+  }).format(totalAmount);
+  //
 
   return (
     <div className={styles.basket}>
@@ -99,7 +123,7 @@ function FullstackBasket(props) {
       </div>
       <div className={styles.basketTotal}>
         <span>Total</span>
-        <span><strong>{totalAmount} UAH.</strong></span>
+        <span><strong>{formatPrice}</strong></span>
       </div>
       <button className={styles.basketClear} onClick={clearBasket}>Clear</button>
     </div>

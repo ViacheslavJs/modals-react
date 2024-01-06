@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import FullstackBasket from './FullstackBasket';
+import FullstackItem from './FullstackItem';
 
 //
 function Fullstack() {   
@@ -158,22 +159,27 @@ function Fullstack() {
   //
   
   const [furnitures, setFurnitures] = useState([]);
+  const [valueCurrency, setValueCurrency] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   useEffect(() => {
     const fetchFurnitures = async () => {
       try {
-        //const response = await fetch('/api'); //TODO - данные из data.json
-        const response = await fetch('/api/furniture'); //TODO - данные из БД
+        const response = await fetch('/api/products'); //TODO - данные из data.json
+        //const response = await fetch('/api/furniture'); //TODO - данные из БД
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const responseData = await response.json();
-        setFurnitures(responseData);
-        //setFurnitures(responseData.furnitures); // если json вида - { "furnitures": [ {...}, {...} ] }
+        //setFurnitures(responseData);
+        setFurnitures(responseData.furnitures); // если json вида - { "furnitures": [ {...}, {...} ] }
+        setValueCurrency(responseData.crnc[0].str);
       } catch (error) {
         console.error('Error fetching data:', error.message);
         setFurnitures([]);
+        setValueCurrency([]);
         setLoading(false); // Устанавливаем loading в false в случае ошибки.
+        setError(true);
       } finally {
         if (loading) {
           setLoading(false); // Если данные успешно загружены, устанавливаем loading в false.
@@ -185,11 +191,20 @@ function Fullstack() {
   }, [loading]);
   
   const prefix = ' - ';
+  //const currency = 'UAH';
+  const currency = valueCurrency;
   
   return (
-    <div>              
-      <section className={styles.cardProduct}>     
-        <h1 className={styles.title}>Furniture store</h1>
+    <div>                                                              
+        
+      {error ? (
+        <p className={styles.messages}>Server is not available</p> // если сервер недоступен.
+      ) : loading ? (
+        <p className={styles.messages}>Loading...</p>
+      ) : (
+                
+        <section className={styles.cardProduct}>   
+        <h1>Furniture store</h1>
         <div className={styles.cart}>         
           <FontAwesomeIcon icon={faCartShopping} style={ {color: initialColor} } className={styles.cartIcon} onClick={cartClick} />
           <>
@@ -197,39 +212,27 @@ function Fullstack() {
             <span className={styles.totalItems}>{`${totalItems}`}</span>
           </>
         </div>
-                        
         <div className={styles.cardFlexBox}>
-        
-        {loading ? (
-          "Loading..."
-        ) : (<>
         
         {furnitures.length > 0 ? (
           furnitures.map((furniture) => (
-            <div className={styles.cardPreviewBox} key={furniture.id}>
-              <img className={styles.cardPreview}
-                key={furniture.id}
-                src={furniture.imagePath}
-                alt={furniture.alt}
-                text={furniture.text}
-                onClick={() => { handleThumbnailClick(furniture.id); }}             
-              />
-              <span className={styles.cardPreviewSpan} onClick={() => { popClick(furniture); }}>
-                More
-              </span>
-              <p>Name: {furniture.name}</p>
-              <p>Price: {furniture.price ? <strong>{furniture.price}</strong> : <span>&mdash;</span>}</p>
-              {<button className={styles.addCart} onClick={(event) => addBasket(furniture.id, event)}>Add to cart</button>}
-              {/*'event' используем в случае ссылки вместо кнопки, добавить атрибут href="#"*/}
-            </div>
+            <FullstackItem 
+              key={furniture.id} 
+              furniture={furniture}
+              handleThumbnailClick={handleThumbnailClick}
+              popClick={popClick}
+              addBasket={addBasket}
+              currency={currency}
+            /> 
           ))) : (
-            "Server is not available" // Отображаем "Server is not available" при отсутствии данных.
+            <p className={styles.messages}>No products found</p> // если пустой массив "furnitures": []
           )}
-          
-          </>)}
+                    
         </div>
-        <button className={styles.viewed} onClick={() => setModalActive(true)}>just viewed</button>
+        <button className={styles.viewed} onClick={() => setModalActive(true)}>just viewed</button>        
       </section> 
+
+      )}
                        
       <div>
         {isPopUpDisplayed && PopUpComponent ? (
@@ -272,7 +275,8 @@ function Fullstack() {
                   basketItems={basketItems} 
                   furnitures={furnitures} 
                   setBasketItems={setBasketItems} 
-                  setTotalAddedItems={setTotalAddedItems}                  
+                  setTotalAddedItems={setTotalAddedItems} 
+                  currency={currency}                 
                 />              
               </>
             }          

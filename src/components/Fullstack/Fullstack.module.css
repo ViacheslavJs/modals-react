@@ -103,21 +103,18 @@
   color: red;
 }
 
-.title {
-  
-}
-
 .cardProduct {
   padding: 10px;
 }
 
 .cardFlexBox {
   display: flex;
-  flex-direction: column;		 
-  justify-content: center;
+  flex-direction: row;		 
+  justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
   text-align: left;
+  gap: 15px; /* пространство между элементами по горизонтали */
   
 }
 
@@ -169,5 +166,9 @@
 
 .scroll {
   overflow-y: hidden;
+}
+
+.messages {
+  margin: 25px auto;
 }
 
