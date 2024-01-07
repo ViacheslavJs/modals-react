@@ -7,6 +7,7 @@ function FullstackBasket(props) {
   const setBasketItems = props.setBasketItems;
   const setTotalAddedItems = props.setTotalAddedItems;
   const currency = props.currency;
+  const valueRate = props.valueRate;
   const furnitures = props.furnitures;
   let totalAmount = 0;
 
@@ -113,7 +114,7 @@ function FullstackBasket(props) {
     style: 'currency',
     currency,
     currencyDisplay: 'narrowSymbol',
-  }).format(totalAmount);
+  }).format(totalAmount / valueRate);
   //
 
   return (

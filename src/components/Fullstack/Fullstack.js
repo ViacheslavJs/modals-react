@@ -160,6 +160,7 @@ function Fullstack() {
   
   const [furnitures, setFurnitures] = useState([]);
   const [valueCurrency, setValueCurrency] = useState([]);
+  const [valueRate, setValueRate] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -174,10 +175,12 @@ function Fullstack() {
         //setFurnitures(responseData);
         setFurnitures(responseData.furnitures); // если json вида - { "furnitures": [ {...}, {...} ] }
         setValueCurrency(responseData.crnc[0].str);
+        setValueRate(responseData.crnc[1].rate);
       } catch (error) {
         console.error('Error fetching data:', error.message);
         setFurnitures([]);
         setValueCurrency([]);
+        setValueRate([]);
         setLoading(false); // Устанавливаем loading в false в случае ошибки.
         setError(true);
       } finally {
@@ -223,6 +226,7 @@ function Fullstack() {
               popClick={popClick}
               addBasket={addBasket}
               currency={currency}
+              valueRate={valueRate}
             /> 
           ))) : (
             <p className={styles.messages}>No products found</p> // если пустой массив "furnitures": []
@@ -276,7 +280,8 @@ function Fullstack() {
                   furnitures={furnitures} 
                   setBasketItems={setBasketItems} 
                   setTotalAddedItems={setTotalAddedItems} 
-                  currency={currency}                 
+                  currency={currency}
+                  valueRate={valueRate}                 
                 />              
               </>
             }          

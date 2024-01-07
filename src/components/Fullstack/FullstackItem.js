@@ -1,6 +1,6 @@
 import styles from './Fullstack.module.css';
 
-export default function FullstackItem({ furniture, handleThumbnailClick, popClick, addBasket, currency }) {
+export default function FullstackItem({ furniture, handleThumbnailClick, popClick, addBasket, currency, valueRate }) {
 
   /*
   const formatPrice = 
@@ -21,7 +21,7 @@ export default function FullstackItem({ furniture, handleThumbnailClick, popClic
     style: 'currency',
     currency,
     currencyDisplay: 'narrowSymbol',
-  }).format(furniture.price);
+  }).format(furniture.price / valueRate);
   //
   
   // если необходимо указывать только имя фото в админ панели:
