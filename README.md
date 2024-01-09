@@ -15,7 +15,6 @@ Used the following approaches:
  `CardProduct.js` and `ImageGallery.js` files. 
 
  - Lightbox images.
-
  
  - Demonstration of the `useMemo` hook using the example of a price filter - file `Yachts.js`:
  When you click the `useMemo Test` button, the state of the component changes. 
@@ -49,7 +48,7 @@ The project will open in a browser tab at [http://localhost:3000/modals-react/](
 
 ## Fullstack
 
-Fragment of an online store. Works with the Express server!
+Fragment of an online store - `Fullstack.js` file. Works with the Express server!
 
 Main functionality:
  - Product cards
