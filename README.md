@@ -74,13 +74,9 @@ Clone the Express repository next to the `modals-react` folder and start the ser
 
  ~/express$ `npm start`
 
-Also run the React client side in a separate tab:
+Also run the React client side in a separate tab - [http://localhost:3000/modals-react/](http://localhost:3000/modals-react/)
 
-[http://localhost:3000/modals-react/](http://localhost:3000/modals-react/)
-
-Management via admin panel:
-
-after starting the server, open in a separate tab [http://localhost:3001/api/admin](http://localhost:3001/api/admin)
+Management via admin panel - after starting the server, open in a separate tab [http://localhost:3001/api/admin](http://localhost:3001/api/admin)
 
 Changed data can be seen
 after reloading the tab with the client side.
