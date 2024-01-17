@@ -166,16 +166,28 @@ function Fullstack() {
   useEffect(() => {
     const fetchFurnitures = async () => {
       try {
-        const response = await fetch('/api/products'); //TODO - данные из data.json
-        //const response = await fetch('/api/furniture'); //TODO - данные из БД
+        //const response = await fetch('/api/products'); //TODO - данные из data.json
+        const response = await fetch('/api/furniture'); //TODO - данные из БД
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const responseData = await response.json();
-        //setFurnitures(responseData);
+
+        /*
+        // для JSON:
+        //setFurnitures(responseData); // если json вида - [ {...}, {...} ] 
         setFurnitures(responseData.furnitures); // если json вида - { "furnitures": [ {...}, {...} ] }
         setValueCurrency(responseData.crnc[0].str);
         setValueRate(responseData.crnc[1].rate);
+        */     
+        
+        
+        // для БД:
+        setFurnitures(responseData.furniture); 
+        setValueCurrency(responseData.crnc[0].str);
+        setValueRate(responseData.crnc[0].rate);
+        
+
       } catch (error) {
         console.error('Error fetching data:', error.message);
         setFurnitures([]);

@@ -8,6 +8,7 @@ function Basket(props) {
   const setBasketItems = props.setBasketItems;
   const setTotalAddedItems = props.setTotalAddedItems;
   const thumbnails = props.thumbnails;
+  const currency = props.currency;
   let totalAmount = 0;
 
   const basketItemElements = [];
@@ -93,6 +94,17 @@ function Basket(props) {
     }
   }
 
+  //
+  function formatPrice(price) {
+    //const currency = 'UAH';
+    return new Intl.NumberFormat('ru-RU', {
+      style: 'currency',
+      currency,
+      currencyDisplay: 'narrowSymbol',
+    }).format(price);
+  }
+  //
+
   return (
     <div className="basket">
       <div className="basket-item-box">
@@ -100,7 +112,7 @@ function Basket(props) {
       </div>
       <div className="basket-total">
         <span>Всего</span>
-        <span><strong>{totalAmount} грн.</strong></span>
+        <span><strong>{formatPrice(totalAmount)}</strong></span>
       </div>
       <button className="basket-clear" onClick={clearBasket}>Очистить</button>
     </div>

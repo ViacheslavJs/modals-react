@@ -145,6 +145,18 @@ function CardProduct() {
   
   const clearedTotalItems = 0;
   const totalItems = clearedTotalItems > 0 ? clearedTotalItems : totalAddedItems;  
+
+  //
+  const currency = 'UAH';
+  function formatPrice(price) {
+    //const currency = 'UAH';
+    return new Intl.NumberFormat('ru-RU', {
+      style: 'currency',
+      currency,
+      currencyDisplay: 'narrowSymbol',
+    }).format(price);
+  }
+  //
   
   return (
     <div>              
@@ -171,7 +183,7 @@ function CardProduct() {
                 More
               </span>
               <p>Name: {thumbnail.name}</p>
-              <p>Price: {thumbnail.price ? <strong>{thumbnail.price}</strong> : <span>&mdash;</span>}</p>
+              <p>Price: {thumbnail.price ? <strong>{formatPrice(thumbnail.price)}</strong> : <span>&mdash;</span>}</p>
               {<button className="add-cart" onClick={(event) => addBasket(thumbnail.id, event)}>Add to cart</button>}
               {/*'event' используем в случае ссылки вместо кнопки, добавить атрибут href="#"*/}
             </div>
@@ -221,7 +233,8 @@ function CardProduct() {
                   basketItems={basketItems} 
                   thumbnails={thumbnails} 
                   setBasketItems={setBasketItems} 
-                  setTotalAddedItems={setTotalAddedItems}                  
+                  setTotalAddedItems={setTotalAddedItems}   
+                  currency={currency}               
                 />              
               </>
             }          
